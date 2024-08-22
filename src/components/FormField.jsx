@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import CustomField from './CustomField';
 import { FormType } from './FormType';
 
-
-
-
 const FormField = ({ index, field, updateField, removeField }) => {
   return (
     <div className="mb-4 p-4 border border-gray-300 rounded">
       <FormType field={field} updateField={updateField} index={index} />
+      
       {field.type === 'dropdown' && (
         <CustomField
           title="Dropdown"
@@ -51,7 +49,7 @@ FormField.propTypes = {
   index: PropTypes.number.isRequired,
   field: PropTypes.shape({
     label: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio']),
+    type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio', 'email', 'password']),
     options: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   updateField: PropTypes.func.isRequired,

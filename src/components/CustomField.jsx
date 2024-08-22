@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-// Define the shape of the props
 const CustomField = ({ title, field, updateField, index }) => {
   const addOption = () => {
     updateField(index, { ...field, options: [...field.options, ''] });

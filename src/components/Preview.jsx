@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 
-
-
 const Preview = ({ title, formJson }) => {
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
@@ -26,6 +25,37 @@ const Preview = ({ title, formJson }) => {
                   aria-label={field.label}
                 />
               )}
+              {field.type === 'email' && (
+                <div>
+                  <input
+                    type={field.type}
+                    className="p-2 border border-gray-300 rounded w-full"
+                    required
+                    aria-label={field.label}
+                    minLength={8}
+                  />
+                </div>
+
+              )}
+              {field.type === 'password' && (
+                <input
+                  type={field.type}
+                  className="p-2 border border-gray-300 rounded w-full"
+                  required
+                  minLength={8}
+                  aria-label={field.label}
+                />
+              )}
+              {field.type === 'tel' && (
+                <input
+                  type={field.type}
+                  className="p-2 border border-gray-300 rounded w-full"
+                  required
+                  aria-label={field.label}
+                  minLength={10}
+                />
+              )}
+
               {field.type === 'dropdown' && (
                 <select
                   className="p-2 border border-gray-300 rounded w-full"
@@ -89,7 +119,7 @@ Preview.propTypes = {
     fields: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string,
-        type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio']),
+        type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio', 'number', 'email', 'tel', 'password']),
         options: PropTypes.arrayOf(PropTypes.string),
       })
     ),

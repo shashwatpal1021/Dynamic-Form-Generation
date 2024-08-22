@@ -3,7 +3,6 @@ import { useState } from 'react';
 import FormField from './FormField';
 import PropTypes from 'prop-types';
 
-
 const FormBuilder = ({ setFormJson }) => {
   const [fields, setFields] = useState([]);
   const [formName, setFormName] = useState('');
@@ -47,6 +46,8 @@ const FormBuilder = ({ setFormJson }) => {
         placeholder="Form Name"
         value={formName}
         onChange={(e) => setFormName(e.target.value)}
+        required
+        minLength={3}
         className="mb-4 p-2 border w-full border-gray-300 rounded"
       />
       <div className="mb-4">
@@ -80,7 +81,6 @@ const FormBuilder = ({ setFormJson }) => {
   );
 };
 
-// PropTypes for type checking
 FormBuilder.propTypes = {
   setFormJson: PropTypes.func.isRequired,
 };
