@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
+
 import { useState } from 'react';
 import FormField from './FormField';
-// import { data } from 'autoprefixer';
+import PropTypes from 'prop-types';
+
 
 const FormBuilder = ({ setFormJson }) => {
   const [fields, setFields] = useState([]);
@@ -79,4 +80,8 @@ const FormBuilder = ({ setFormJson }) => {
   );
 };
 
+// PropTypes for type checking
+FormBuilder.propTypes = {
+  setFormJson: PropTypes.func.isRequired,
+};
 export default FormBuilder;

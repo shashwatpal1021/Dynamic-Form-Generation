@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 
+// Define the shape of the props
 const CustomField = ({ title, field, updateField, index }) => {
   const addOption = () => {
     updateField(index, { ...field, options: [...field.options, ''] });
@@ -18,7 +19,6 @@ const CustomField = ({ title, field, updateField, index }) => {
   };
 
   return (
-
     <div className="mb-2">
       <h3 className="font-bold">{title}</h3>
       {field.options.map((option, optionIndex) => (
@@ -44,8 +44,19 @@ const CustomField = ({ title, field, updateField, index }) => {
         Add Option
       </button>
     </div>
+  );
+};
 
-  )
-}
+// Define PropTypes
+CustomField.propTypes = {
+  title: PropTypes.string.isRequired,
+  field: PropTypes.shape({
+    label: PropTypes.string,
+    type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio']),
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  updateField: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
-export default CustomField
+export default CustomField;
