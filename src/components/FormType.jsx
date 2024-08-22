@@ -46,7 +46,7 @@ export const FormType = ({ field, updateField, index }) => {
 FormType.propTypes = {
   field: PropTypes.shape({
     label: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio']),
+    type: PropTypes.oneOf(['text', 'textarea', 'dropdown', 'checkbox', 'radio', "email", "tel", "password", "number"]),
     options: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   updateField: PropTypes.func.isRequired,
