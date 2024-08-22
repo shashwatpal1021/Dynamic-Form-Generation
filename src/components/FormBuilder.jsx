@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import FormField from './FormField';
+// import { data } from 'autoprefixer';
 
-const FormBuilder = () => {
+const FormBuilder = ({ setFormJson }) => {
   const [fields, setFields] = useState([]);
   const [formName, setFormName] = useState('');
 
@@ -29,10 +31,9 @@ const FormBuilder = () => {
       fields,
     };
 
-    // Save the form data to local storage
     localStorage.setItem('formConfig', JSON.stringify(formConfig));
+    setFormJson(formConfig);
 
-    // Clear form after submission
     setFields([]);
     setFormName('');
   };

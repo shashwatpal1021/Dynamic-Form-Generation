@@ -1,25 +1,17 @@
-import  { useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
 
-const Preview = () => {
-  const [formJson, setFormJson] = useState(null);
 
-  useEffect(() => {
-    const savedFormConfig = localStorage.getItem('formConfig');
-    if (savedFormConfig) {
-      setFormJson(JSON.parse(savedFormConfig));
-    }
-  }, []);
-
+const Preview = ({ title,formJson }) => {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Preview Form</h1>
+      <h1 className="text-2xl font-bold mb-4">{title}</h1>
       {formJson ? (
         <div className="bg-gray-100 p-4 rounded">
-          {console.log("data--->",formJson)}
-          <h2 className="text-xl font-bold mb-4">{formJson.name}</h2>
+          {console.log("data--->", formJson)}
+          <h2 className="text-xl font-bold mb-4 capitalize">{formJson.name}</h2>
           {formJson.fields.map((field, index) => (
             <div key={index} className="mb-4">
-              <label className="block mb-2 font-bold">{field.label}</label>
+              <label className="block mb-2 font-bold capitalize">{field.label}</label>
               {field.type === 'text' && <input type="text" className="p-2 border border-gray-300 rounded w-full" />}
               {field.type === 'textarea' && <textarea className="p-2 border border-gray-300 rounded w-full" />}
               {field.type === 'dropdown' && (
@@ -30,7 +22,14 @@ const Preview = () => {
                 </select>
               )}
               {field.type === 'checkbox' && (
-                <input type="checkbox" className="p-2 border border-gray-300 rounded" />
+                <div>
+                  {field.options.map((option, optionIndex) => (
+                    <label key={optionIndex} className="block">
+                      <input type="checkbox" name={`checkbox-${index}`} value={option} className="mr-2" />
+                      {option}
+                    </label>
+                  ))}
+                </div>
               )}
               {field.type === 'radio' && (
                 <div>
